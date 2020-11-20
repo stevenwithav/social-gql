@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Card, Icon, Label, Image, Button } from 'semantic-ui-react';
+import { Card, Icon, Label, Image, Button, Popup } from 'semantic-ui-react';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 
@@ -27,14 +27,21 @@ export default function PostCard({
 			</Card.Content>
 			<Card.Content extra>
 				<LikeButton user={user} post={{ id, likes, likeCount }} />
-				<Button labelPosition='right' as={Link} to={`/posts/${id}`}>
-					<Button color='blue' basic>
-						<Icon name='comments' />
-					</Button>
-					<Label basic color='blue' pointing='left'>
-						{commentCount}
-					</Label>
-				</Button>
+				<Popup
+					content='Comment'
+					inverted
+					trigger={
+						<Button labelPosition='right' as={Link} to={`/posts/${id}`}>
+							<Button color='blue' basic>
+								<Icon name='comments' />
+							</Button>
+							<Label basic color='blue' pointing='left'>
+								{commentCount}
+							</Label>
+						</Button>
+					}
+				/>
+
 				{user && user.username === username && <DeleteButton postId={id} />}
 			</Card.Content>
 		</Card>
