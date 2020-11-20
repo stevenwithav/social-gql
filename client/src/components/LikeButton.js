@@ -36,7 +36,7 @@ export default function LikeButton({ user, post: { id, likeCount, likes } }) {
 
 	return (
 		<Popup
-			content='Like'
+			content={liked ? 'Unlike' : 'Like'}
 			inverted
 			trigger={
 				<Button as='div' labelPosition='right' onClick={likePost}>
